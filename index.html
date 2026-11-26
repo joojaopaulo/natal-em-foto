@@ -2,347 +2,219 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Natal em Foto: ensaio de Natal com IA a partir de uma foto do celular</title>
-<meta name="description" content="Mande uma foto do celular e veja a prévia grátis do seu ensaio de Natal com Papai Noel e cenários de Natal. 10 fotos por R$ 29,90, entrega no WhatsApp no mesmo dia. Imagens criadas com inteligência artificial.">
-<meta name="theme-color" content="#15382b">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Natal em Foto: ensaio de Natal feito com IA</title>
+<meta name="description" content="Uma foto do celular vira um ensaio de Natal feito com inteligência artificial. Prévia grátis, 5 fotos por R$ 19,90 ou 10 por R$ 29,90, no WhatsApp no mesmo dia.">
+<meta property="og:title" content="Natal em Foto: ensaio de Natal feito com IA">
+<meta property="og:description" content="Prévia grátis a partir de uma foto do celular.">
+<meta property="og:image" content="https://joojaopaulo.github.io/natal-em-foto/img/trono.jpg">
+<meta name="theme-color" content="#0f2a20">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap">
 <style>
-:root{
-  --verde:#15382b;
-  --verde-2:#1f4d3b;
-  --creme:#fbf5e9;
-  --creme-2:#f3e9d3;
-  --tinta:#1d1a16;
-  --suave:#5a5348;
-  --vermelho:#b3201f;
-  --vermelho-esc:#8f1716;
-  --ouro:#c99a3a;
-  --raio:18px;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-}
+:root{--noite:#0f2a20;--noite2:#173a2d;--papel:#f8f3ea;--creme:#efe6d4;--tinta:#1c1a15;--suave:#635b4d;--rubi:#a8221f;--rubi2:#8a1a18;--ouro:#c8a05a;--mola:cubic-bezier(.32,.72,0,1);
+--serif:"Fraunces",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;font-family:var(--sans);font-size:1.0625rem;line-height:1.6;color:var(--tinta);background:var(--creme);overflow-x:hidden}
-img{display:block;max-width:100%;height:auto}
-h1,h2,h3{font-family:var(--serif);line-height:1.12;margin:0;font-weight:700;letter-spacing:-.01em}
-p{margin:0 0 1em}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 1rem/1.65 var(--sans);overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+img,video{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.04;letter-spacing:-.025em;margin:0;text-wrap:balance}
+h1 em,h2 em{font-weight:400;font-style:italic;color:var(--ouro)}
+p{margin:0}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:6px}
-.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
-.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:10px 14px;border-radius:8px;z-index:20}
-.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 max(18px,env(safe-area-inset-right)) 0 max(18px,env(safe-area-inset-left))}
+.pill{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:7px 13px;border-radius:99px;border:1px solid rgba(200,160,90,.45);color:var(--ouro)}
 
-/* botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:.5em;min-height:54px;padding:14px 26px;border-radius:999px;font:700 1.0625rem/1.2 var(--sans);text-decoration:none;border:2px solid transparent;transition:transform .15s ease,background .15s ease}
-.btn-main{background:var(--vermelho);color:#fff;box-shadow:0 8px 22px -8px rgba(179,32,31,.7)}
-.btn-main:hover{background:var(--vermelho-esc);transform:translateY(-2px)}
-.btn-sec{background:transparent;color:var(--verde);border-color:var(--verde)}
-.btn-sec:hover{background:var(--verde);color:#fff}
-.on-dark .btn-sec{color:#fff;border-color:rgba(255,255,255,.6)}
-.on-dark .btn-sec:hover{background:#fff;color:var(--verde)}
-.btn-row{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+nav{position:sticky;top:10px;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:14px;width:min(560px,calc(100% - 28px));margin:10px auto 0;padding:7px 7px 7px 18px;border-radius:99px;background:rgba(15,42,32,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 0 0 1px rgba(255,255,255,.09),0 20px 44px -22px rgba(8,24,18,.7);color:var(--papel)}
+.marca{font-family:var(--serif);font-size:1.1rem;text-decoration:none}.marca i{color:var(--ouro)}
+nav a.mini{font-size:.82rem;font-weight:700;text-decoration:none;background:rgba(255,255,255,.09);padding:11px 16px;border-radius:99px}
 
-/* topo */
-.topo{background:var(--verde);color:var(--creme)}
-.topo .wrap{display:flex;align-items:center;justify-content:space-between;min-height:58px}
-.marca{font-family:var(--serif);font-weight:700;font-size:1.25rem;text-decoration:none;letter-spacing:.01em}
-.marca span{color:var(--ouro)}
-.topo a.link{font-size:.95rem;text-decoration:none;border-bottom:1px solid rgba(251,245,233,.5)}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;max-width:420px;margin-inline:auto;min-height:58px;padding:7px 7px 7px 24px;border-radius:99px;font-weight:700;text-decoration:none;transition:transform .6s var(--mola)}
+.btn b{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;font-weight:400;font-size:1.15rem;transition:transform .6s var(--mola)}
+.btn:active{transform:scale(.98)}.btn:hover b{transform:translate(3px,-1px) scale(1.05)}
+.rubi{background:var(--rubi);color:#fff;box-shadow:0 22px 38px -20px rgba(168,34,31,.85),inset 0 1px 0 rgba(255,255,255,.18)}.rubi b{background:rgba(255,255,255,.16)}
+.linha{color:var(--noite);box-shadow:inset 0 0 0 1.5px rgba(15,42,32,.28)}.linha b{background:rgba(15,42,32,.08)}
 
-/* hero */
-.hero{background:var(--verde);color:var(--creme);padding:36px 0 64px;position:relative}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:28px;background:var(--creme);border-radius:28px 28px 0 0}
-.selo{display:inline-block;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ouro);font-weight:700;margin-bottom:14px}
-.hero h1{font-size:clamp(2.1rem,8vw,3.6rem);margin-bottom:18px}
-.hero h1 em{font-style:italic;color:var(--ouro)}
-.hero .lead{font-size:1.125rem;color:#e6dfcd;max-width:34em}
-.hero-grid{display:grid;gap:34px}
-.ba{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end}
-.ba figure{margin:0;position:relative}
-.ba img{border-radius:var(--raio);aspect-ratio:4/5;object-fit:cover;width:100%;background:var(--verde-2)}
-.ba .depois img{box-shadow:0 18px 40px -14px rgba(0,0,0,.6);outline:3px solid var(--ouro);outline-offset:-3px}
-.ba figcaption{position:absolute;left:10px;bottom:10px;background:rgba(21,56,43,.92);color:#fff;font-size:.8125rem;font-weight:700;padding:5px 11px;border-radius:999px}
-.ba .depois{transform:translateY(-14px)}
-.ia-nota{font-size:.875rem;color:#cfc8b4;margin:14px 0 0}
-.mini{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0 26px;padding:0;list-style:none;font-size:.97rem;color:#efe8d6}
-.mini li::before{content:"✓";color:var(--ouro);font-weight:700;margin-right:7px}
+.casca{padding:7px;border-radius:30px;background:rgba(255,255,255,.07);box-shadow:0 0 0 1px rgba(200,160,90,.28),0 40px 70px -40px rgba(5,18,13,.8)}
+.miolo{border-radius:23px;overflow:hidden;position:relative}
 
-/* seções */
-section{padding:64px 0}
-.eyebrow{font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--vermelho);margin-bottom:10px}
-h2{font-size:clamp(1.7rem,6vw,2.6rem);margin-bottom:14px}
-.intro{color:var(--suave);max-width:38em;margin-bottom:34px}
+.hero{background:radial-gradient(120% 80% at 50% 0%,#215141 0%,var(--noite) 62%);color:var(--papel);margin-top:-74px;padding:94px 0 64px;text-align:center}
+.hero h1{font-size:clamp(2.15rem,9.4vw,4.2rem);margin:14px auto 12px;max-width:14ch}
+.hero .sub{color:#d9d2bf;max-width:34ch;margin:0 auto 18px;font-size:.98rem}
+.hero .preco-linha{font-size:.82rem;color:#bdb6a2;margin:12px auto 26px;max-width:36ch}
+.vsl{width:min(330px,82vw);margin:0 auto}
+.vsl video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#081710}
+.som{position:absolute;inset:auto 12px 12px;border:0;border-radius:99px;padding:13px;font:700 .9rem var(--sans);background:rgba(248,243,234,.94);color:var(--noite);cursor:pointer}
 
-/* passos */
-.passos{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:p}
-.passos li{counter-increment:p;background:#fff;border-radius:var(--raio);padding:24px 22px 22px 22px;border:1px solid var(--creme-2);position:relative}
-.passos li::before{content:counter(p);font-family:var(--serif);font-size:2.4rem;color:var(--ouro);font-weight:700;display:block;line-height:1;margin-bottom:10px}
-.passos h3{font-size:1.3rem;margin-bottom:6px}
-.passos p{margin:0;color:var(--suave)}
+section{padding:88px 0}
+.cab{margin-bottom:34px;max-width:34em}
+.cab h2{font-size:clamp(1.9rem,7vw,3.1rem);margin:14px 0 12px}
+.cab p{color:var(--suave)}
 
-/* galeria */
-.galeria{background:var(--creme-2)}
+.planos{display:grid;gap:22px}
+.plano{padding:7px;border-radius:32px;background:rgba(15,42,32,.045);box-shadow:0 0 0 1px rgba(15,42,32,.07)}
+.plano>div{background:#fffdf8;border-radius:25px;padding:28px 22px 22px;height:100%;display:flex;flex-direction:column;box-shadow:inset 0 1px 0 #fff,0 30px 50px -38px rgba(40,30,10,.45)}
+.plano h3{font-size:1.45rem}
+.plano .valor{font-family:var(--serif);font-size:3.2rem;line-height:1;margin:16px 0 4px;letter-spacing:-.03em}
+.plano small{color:var(--suave)}
+.plano ul{list-style:none;padding:0;margin:20px 0 24px;flex:1}
+.plano li{padding:9px 0 9px 24px;position:relative}
+.plano li::before{content:"✦";position:absolute;left:0;color:var(--ouro)}
+.plano.gratis{background:linear-gradient(160deg,rgba(200,160,90,.55),rgba(200,160,90,.12))}
+.plano.gratis>div{background:radial-gradient(130% 90% at 0 0,#22503f,var(--noite));color:var(--papel)}
+.plano.gratis small{color:#bdb6a2}
+.nota{margin-top:26px;color:var(--suave);font-size:.93rem;max-width:44em}
+
+.cenarios{background:var(--creme)}
 .grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grade figure{margin:0;position:relative;border-radius:var(--raio);overflow:hidden;background:var(--verde-2)}
-.grade img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.grade figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;color:#fff;font-weight:700;font-size:.95rem;background:linear-gradient(transparent,rgba(10,25,19,.82))}
-.aviso-ia{margin-top:22px;font-size:.95rem;color:var(--suave);border-left:4px solid var(--ouro);padding:4px 0 4px 14px}
+.grade button{all:unset;cursor:pointer;padding:5px;border-radius:24px;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(15,42,32,.08);transition:transform .6s var(--mola),background .4s var(--mola)}
+.grade button:nth-child(even){transform:translateY(18px)}
+.grade button:focus-visible{outline:3px solid var(--noite);outline-offset:3px}
+.grade figure{margin:0;position:relative;border-radius:19px;overflow:hidden}
+.grade img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.grade figcaption{position:absolute;inset:auto 0 0;padding:34px 12px 11px;color:#fff;font-weight:700;font-size:.86rem;line-height:1.25;background:linear-gradient(transparent,rgba(8,22,16,.88))}
+.grade button[aria-pressed="true"]{background:var(--rubi)}
+.grade button[aria-pressed="true"] figure::after{content:"Escolhido ✓";position:absolute;top:9px;left:9px;background:var(--rubi);color:#fff;font-size:.74rem;font-weight:700;padding:4px 11px;border-radius:99px}
+.pedido{max-width:600px;margin:48px auto 0;padding:7px;border-radius:32px;background:rgba(255,255,255,.5);box-shadow:0 0 0 1px rgba(15,42,32,.08)}
+.pedido>div{background:#fffdf8;border-radius:25px;padding:24px 20px}
+.pedido label{display:block;font-family:var(--serif);font-size:1.3rem;margin-bottom:12px}
+.pedido textarea{width:100%;min-height:104px;border:0;border-radius:16px;background:var(--papel);box-shadow:inset 0 0 0 1px rgba(15,42,32,.14);padding:14px;font:inherit;margin-bottom:16px}
+.pedido p{font-size:.88rem;color:var(--suave);margin-top:12px;text-align:center}
 
-/* pacote */
-.pacote{display:grid;gap:22px}
-.cartao{background:var(--verde);color:var(--creme);border-radius:24px;padding:30px 24px}
-.cartao .preco{font-family:var(--serif);font-size:3rem;font-weight:700;line-height:1;color:#fff}
-.cartao .preco small{font-size:1rem;font-family:var(--sans);font-weight:400;color:#d8d1bd;margin-left:6px}
-.cartao ul{list-style:none;margin:20px 0 24px;padding:0}
-.cartao li{padding:8px 0 8px 28px;position:relative;border-bottom:1px solid rgba(255,255,255,.12)}
-.cartao li:last-child{border:0}
-.cartao li::before{content:"✓";position:absolute;left:0;color:var(--ouro);font-weight:700}
-.extras{background:#fff;border:1px dashed #c8b98e;border-radius:24px;padding:26px 22px}
-.extras h3{font-size:1.35rem;margin-bottom:8px}
-.extras p.pequeno{color:var(--suave);font-size:.97rem}
-.extra{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-top:1px solid var(--creme-2)}
-.extra strong{display:block}
-.extra span.d{color:var(--suave);font-size:.93rem}
-.extra b{white-space:nowrap;font-family:var(--serif);font-size:1.15rem}
+.passos{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.passos li{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:26px 0;border-top:1px solid rgba(15,42,32,.12)}
+.passos span{font:400 italic 2.6rem/1 var(--serif);color:var(--ouro)}
+.passos h3{font-size:1.35rem;margin-bottom:6px}.passos p{color:var(--suave)}
 
-/* faq */
-.faq{background:#fff}
-details{border-bottom:1px solid var(--creme-2)}
-summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-weight:700;font-size:1.0625rem;position:relative;min-height:44px}
+details{border-top:1px solid rgba(15,42,32,.12)}
+summary{cursor:pointer;list-style:none;position:relative;padding:22px 44px 22px 0;font-weight:700}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:1.6rem;color:var(--vermelho);font-weight:400}
-details[open] summary::after{content:"–"}
-details p{color:var(--suave);padding-right:10px;margin:0 0 20px}
+summary::after{content:"+";position:absolute;right:6px;top:18px;font:400 1.6rem var(--serif);color:var(--rubi);transition:transform .5s var(--mola)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--suave);padding-bottom:22px}
+.priv{margin-top:48px;border-radius:25px;background:var(--creme);padding:26px 22px;color:var(--suave);font-size:.93rem}
+.priv h3{color:var(--tinta);font-size:1.3rem;margin-bottom:10px}.priv ul{margin:0;padding-left:1.1em}
 
-/* privacidade */
-.priv{background:var(--creme)}
-.priv-box{background:#fff;border:1px solid var(--creme-2);border-radius:24px;padding:28px 22px}
-.priv ul{margin:0;padding-left:1.2em;color:var(--suave)}
-.priv li{margin-bottom:8px}
+.fim{background:radial-gradient(120% 90% at 50% 100%,#215141,var(--noite) 65%);color:var(--papel);text-align:center}
+.fim h2{font-size:clamp(2rem,8vw,3.4rem);margin-bottom:26px}
+footer{background:#0a1e17;color:#a9a28f;font-size:.86rem;padding:34px 0 104px;text-align:center}
 
-/* cta final */
-.final{background:var(--verde);color:var(--creme);text-align:center;padding:72px 0}
-.final h2{color:#fff}
-.final p.intro{color:#d8d1bd;margin-left:auto;margin-right:auto}
-.final .btn-row{max-width:420px;margin:0 auto}
-
-/* rodapé */
-footer{background:#0e251c;color:#cfc8b4;padding:34px 0 44px;font-size:.93rem}
-footer .marca{display:block;margin-bottom:8px;color:#fff}
-footer p{margin:0 0 8px;max-width:46em}
-
-/* barra fixa mobile */
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(251,245,233,.96);border-top:1px solid var(--creme-2);transform:translateY(110%);transition:transform .25s ease}
+.barra{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:30;transform:translateY(160%);transition:transform .7s var(--mola)}
 .barra.on{transform:none}
-.barra .btn{width:100%;min-height:50px}
-body{padding-bottom:0}
-
-@media (min-width:760px){
-  body{font-size:1.125rem}
-  .wrap{padding:0 32px}
-  section{padding:96px 0}
-  .btn-row{flex-direction:row;flex-wrap:wrap}
-  .hero{padding:56px 0 96px}
-  .hero-grid{grid-template-columns:1.05fr 1fr;align-items:center;gap:56px}
-  .passos{grid-template-columns:repeat(3,1fr);gap:22px}
-  .grade{grid-template-columns:repeat(4,1fr);gap:16px}
-  .pacote{grid-template-columns:1fr 1fr;align-items:start;gap:32px}
-  .barra{display:none}
+.sobe{animation:sobe .9s var(--mola) both}.sobe:nth-child(2){animation-delay:.08s}.sobe:nth-child(3){animation-delay:.16s}.sobe:nth-child(4){animation-delay:.24s}
+@keyframes sobe{from{opacity:0;transform:translateY(22px)}}
+@media(min-width:800px){
+ .planos{grid-template-columns:1.12fr 1fr 1fr}.grade{grid-template-columns:repeat(4,1fr);gap:18px}.passos{grid-template-columns:repeat(3,1fr);gap:28px}
+ section{padding:130px 0}.barra{display:none}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{transition:none!important;animation:none!important}
-}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<a class="skip" href="#principal">Pular para o conteúdo</a>
+<nav aria-label="Principal"><a class="marca" href="#topo">Natal <i>em</i> Foto</a><a class="mini" href="#planos">Ver pacotes</a></nav>
 
-<header class="topo">
+<main>
+<header class="hero" id="topo">
   <div class="wrap">
-    <a class="marca" href="#topo" aria-label="Natal em Foto, início">Natal <span>em</span> Foto</a>
-    <a class="link" href="#faq">Dúvidas</a>
+    <span class="pill sobe">Ensaio de Natal feito com IA</span>
+    <h1 class="sobe">Uma foto do celular vira <em>o seu Natal</em></h1>
+    <a class="btn rubi sobe" id="cta-topo" data-ev="previa" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.%0ACen%C3%A1rio%20que%20quero%3A%20">Ver minha prévia grátis <b>↗</b></a>
+    <p class="preco-linha sobe">5 fotos por R$ 19,90 ou 10 por R$ 29,90<br>(+ R$ 0,99 de taxa no checkout)</p>
+    <div class="vsl casca">
+      <div class="miolo">
+        <video id="vsl" src="video/vsl.mp4" poster="video/vsl-capa.jpg" playsinline muted loop preload="metadata" aria-label="Vídeo: como a foto do celular vira um ensaio de Natal"></video>
+        <button class="som" id="som" type="button">▶ Assistir com som</button>
+      </div>
+    </div>
   </div>
 </header>
 
-<main id="principal">
-<section class="hero" id="topo" aria-labelledby="h-hero" style="padding-top:36px">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="selo">Ensaio de Natal com IA</span>
-      <h1 id="h-hero">Aquela foto de Natal que ninguém conseguiu tirar, <em>a partir de uma só do seu celular.</em></h1>
-      <p class="lead">Criança que não para quieta, família espalhada, pet que não fica no colo. Você manda uma foto e recebe retratos com Papai Noel e cenários de Natal. A prévia é grátis: você vê antes de pagar qualquer coisa.</p>
-      <ul class="mini">
-        <li>Prévia grátis</li>
-        <li>10 fotos por R$ 29,90 (+ R$ 0,99 de taxa de serviço no checkout)</li>
-        <li>Entrega no WhatsApp no mesmo dia</li>
-      </ul>
-      <div class="btn-row">
-        <a class="btn btn-main" id="cta-topo" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.">Quero ver a minha prévia grátis</a>
-        <a class="btn btn-sec" href="https://pay.cakto.com.br/tph9hjh_1360498">Já vi a prévia e quero as 10 fotos</a>
-      </div>
-      <p class="ia-nota">Imagens criadas com inteligência artificial. A prévia mostra o resultado antes de você pagar.</p>
-    </div>
-
-    <div>
-      <div class="ba" role="group" aria-label="Comparação entre a foto original e uma foto do ensaio">
-        <figure class="antes">
-          <img src="img/antes.jpg" alt="Foto comum tirada com celular, a que a pessoa envia para o ensaio" width="640" height="800" fetchpriority="high">
-          <figcaption>Antes: foto do celular</figcaption>
-        </figure>
-        <figure class="depois">
-          <img src="img/trono.jpg" alt="Exemplo de retrato de Natal com Papai Noel, criado com inteligência artificial" width="640" height="800" fetchpriority="high">
-          <figcaption>Depois: ensaio de Natal</figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-passos">
+<section id="planos" aria-labelledby="h-planos">
   <div class="wrap">
-    <p class="eyebrow">Como funciona</p>
-    <h2 id="h-passos">Três passos, tudo pelo WhatsApp</h2>
-    <p class="intro">Sem baixar aplicativo nenhum. Você só precisa de uma foto boa do rosto, com boa luz.</p>
-    <ol class="passos">
-      <li>
-        <h3>Mande a foto</h3>
-        <p>Clique no botão e envie uma foto pelo WhatsApp. Criança, família, casal ou pet. Se a foto for de criança, quem envia precisa ser o responsável.</p>
-      </li>
-      <li>
-        <h3>Veja a prévia grátis</h3>
-        <p>Você recebe uma prévia para conferir o resultado. Gostou? Segue. Não gostou? Não paga nada.</p>
-      </li>
-      <li>
-        <h3>Pague e receba no mesmo dia</h3>
-        <p>Pagou, as 10 fotos chegam no seu WhatsApp no mesmo dia.</p>
-      </li>
-    </ol>
-    <div class="btn-row" style="margin-top:30px;max-width:420px">
-      <a class="btn btn-main" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.">Quero ver a minha prévia grátis</a>
+    <div class="cab"><span class="pill">Os pacotes</span><h2 id="h-planos">Escolha como <em>começar</em></h2><p>Quer ver antes de pagar? Peça a prévia.</p></div>
+    <div class="planos">
+      <article class="plano gratis"><div>
+        <h3>Prévia grátis</h3><p class="valor">R$ 0</p><small>Uma por pessoa</small>
+        <ul><li>1 foto pequena, com marca d'água</li><li>Em até 1 hora durante o dia</li><li>Você escolhe o cenário</li></ul>
+        <a class="btn rubi" data-ev="previa" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.%0ACen%C3%A1rio%20que%20quero%3A%20">Pedir no WhatsApp <b>↗</b></a>
+      </div></article>
+      <article class="plano"><div>
+        <h3>5 fotos</h3><p class="valor">R$ 19,90</p><small>+ R$ 0,99 de taxa no checkout</small>
+        <ul><li>Até 2 cenários à sua escolha</li><li>Sem marca d'água</li><li>No seu WhatsApp, no mesmo dia</li></ul>
+        <a class="btn linha" data-ev="compra5" href="https://pay.cakto.com.br/aa94qei_1374250">Comprar 5 fotos <b>↗</b></a>
+      </div></article>
+      <article class="plano"><div>
+        <h3>10 fotos</h3><p class="valor">R$ 29,90</p><small>+ R$ 0,99 de taxa no checkout</small>
+        <ul><li>Até 5 cenários à sua escolha</li><li>Sem marca d'água</li><li>No seu WhatsApp, no mesmo dia</li></ul>
+        <a class="btn linha" data-ev="compra10" href="https://pay.cakto.com.br/tph9hjh_1360498">Comprar 10 fotos <b>↗</b></a>
+      </div></article>
     </div>
+    <p class="nota">Comprou direto? Depois de pagar, <a data-ev="pos-compra" href="https://wa.me/5555996665991?text=Oi!%20Acabei%20de%20comprar.%20Vou%20mandar%20a%20foto%20e%20o%20cen%C3%A1rio.">mande a foto no WhatsApp</a>. Você recebe 1 foto primeiro: se não gostar, devolvemos todo o valor.</p>
   </div>
 </section>
 
-<section class="galeria" aria-labelledby="h-gal">
+<section class="cenarios" aria-labelledby="h-cen">
   <div class="wrap">
-    <p class="eyebrow">Cenários</p>
-    <h2 id="h-gal">Escolha o clima do seu Natal</h2>
-    <p class="intro">Alguns dos cenários que você pode receber. Cada ensaio é gerado a partir da sua foto.</p>
-    <div class="grade">
-      <figure><img src="img/trono.jpg" alt="Retrato de Natal no trono do Papai Noel" width="640" height="800" loading="lazy"><figcaption>Trono do Papai Noel</figcaption></figure>
-      <figure><img src="img/neve.jpg" alt="Retrato de Natal em cenário de neve" width="640" height="800" loading="lazy"><figcaption>Neve</figcaption></figure>
-      <figure><img src="img/praia.jpg" alt="Retrato de Natal em cenário de praia" width="640" height="800" loading="lazy"><figcaption>Natal na praia</figcaption></figure>
-      <figure><img src="img/lareira.jpg" alt="Retrato de Natal ao lado da lareira" width="640" height="800" loading="lazy"><figcaption>Lareira</figcaption></figure>
-      <figure><img src="img/arvore.jpg" alt="Retrato de Natal junto da árvore de Natal" width="640" height="800" loading="lazy"><figcaption>Árvore de Natal</figcaption></figure>
-      <figure><img src="img/pijama.jpg" alt="Retrato de Natal em clima de pijama natalino" width="640" height="800" loading="lazy"><figcaption>Manhã de pijama</figcaption></figure>
-      <figure><img src="img/estudio.jpg" alt="Retrato de Natal em estilo estúdio" width="640" height="800" loading="lazy"><figcaption>Estúdio</figcaption></figure>
-      <figure><img src="img/carta.jpg" alt="Retrato de Natal com a carta para o Papai Noel" width="640" height="800" loading="lazy"><figcaption>Carta ao Papai Noel</figcaption></figure>
-    </div>
-    <p class="aviso-ia">Imagens criadas com inteligência artificial. O resultado varia de foto para foto, por isso existe a prévia grátis: você vê o seu antes de decidir.</p>
-  </div>
-</section>
-
-<section aria-labelledby="h-pacote">
-  <div class="wrap pacote">
-    <div class="cartao">
-      <p class="eyebrow" style="color:var(--ouro)">O pacote</p>
-      <h2 id="h-pacote" style="color:#fff;font-size:1.7rem">10 fotos do seu ensaio de Natal</h2>
-      <p class="preco">R$ 29,90 <small>pagamento único, mais R$ 0,99 de taxa de serviço no checkout</small></p>
-      <ul>
-        <li>10 fotos realistas com Papai Noel e cenários de Natal</li>
-        <li>Prévia grátis antes de pagar</li>
-        <li>Entrega no seu WhatsApp no mesmo dia</li>
-        <li>Garantia de 7 dias</li>
-      </ul>
-      <div class="btn-row on-dark">
-        <a class="btn btn-main" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.">Quero ver a minha prévia grátis</a>
-        <a class="btn btn-sec" href="https://pay.cakto.com.br/tph9hjh_1360498">Já vi a prévia e quero as 10 fotos</a>
-      </div>
+    <div class="cab"><span class="pill">Os cenários</span><h2 id="h-cen">Toque no que <em>você quer</em></h2><p>Marque os exemplos e escreva do seu jeito. A mensagem do WhatsApp vai pronta.</p></div>
+    <div class="grade"><button type="button" aria-pressed="false" data-cenario="Trono do Papai Noel"><figure><img src="img/trono.jpg" alt="Exemplo: Trono do Papai Noel" width="900" height="1117" loading="lazy"><figcaption>Trono do Papai Noel</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Neve"><figure><img src="img/neve.jpg" alt="Exemplo: Neve" width="900" height="1117" loading="lazy"><figcaption>Neve</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Natal na praia"><figure><img src="img/praia.jpg" alt="Exemplo: Natal na praia" width="900" height="1117" loading="lazy"><figcaption>Natal na praia</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Lareira"><figure><img src="img/lareira.jpg" alt="Exemplo: Lareira" width="900" height="1117" loading="lazy"><figcaption>Lareira</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Árvore de Natal"><figure><img src="img/arvore.jpg" alt="Exemplo: Árvore de Natal" width="900" height="1117" loading="lazy"><figcaption>Árvore de Natal</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Manhã de pijama"><figure><img src="img/pijama.jpg" alt="Exemplo: Manhã de pijama" width="900" height="1117" loading="lazy"><figcaption>Manhã de pijama</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Estúdio"><figure><img src="img/estudio.jpg" alt="Exemplo: Estúdio" width="900" height="1117" loading="lazy"><figcaption>Estúdio</figcaption></figure></button><button type="button" aria-pressed="false" data-cenario="Carta ao Papai Noel"><figure><img src="img/carta.jpg" alt="Exemplo: Carta ao Papai Noel" width="900" height="1117" loading="lazy"><figcaption>Carta ao Papai Noel</figcaption></figure></button></div>
+    <div class="pedido"><div>
+      <label for="desc">Como você quer a foto?</label>
+      <textarea id="desc" placeholder="Ex.: meu filho e o cachorro na neve, com gorro de Papai Noel"></textarea>
+      <a class="btn rubi" id="enviar" data-ev="previa" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.%0ACen%C3%A1rio%20que%20quero%3A%20">Mandar meu pedido <b>↗</b></a>
+      <p>Na conversa, é só anexar a foto.</p>
     </div></div>
-</section>
-
-<section class="faq" id="faq" aria-labelledby="h-faq">
-  <div class="wrap" style="max-width:820px">
-    <p class="eyebrow">Perguntas frequentes</p>
-    <h2 id="h-faq">Antes de mandar a foto</h2>
-    <div>
-      <details>
-        <summary>Vai ficar parecido comigo?</summary>
-        <p>Não dá para garantir que o rosto saia idêntico, porque as imagens são geradas por inteligência artificial. Por isso a prévia é grátis: você vê o resultado antes de pagar e só segue se gostar. Fotos nítidas, com o rosto bem iluminado e de frente, ajudam bastante.</p>
-      </details>
-      <details>
-        <summary>Em quanto tempo recebo?</summary>
-        <p>Depois do pagamento, as 10 fotos chegam no seu WhatsApp no mesmo dia.</p>
-      </details>
-      <details>
-        <summary>E a privacidade? Posso mandar foto de criança?</summary>
-        <p>Pode, desde que quem envie seja o pai, a mãe ou o responsável legal. A foto é usada só para gerar o seu ensaio e apagada em até 30 dias. Mais detalhes na seção de privacidade abaixo.</p>
-      </details>
-      <details>
-        <summary>E se eu não gostar?</summary>
-        <p>Você tem 7 dias de garantia. Como a compra é online, você também tem o direito de arrependimento previsto em lei. Se precisar, é só pedir pelo mesmo WhatsApp.</p>
-      </details>
-      <details>
-        <summary>Como pago?</summary>
-        <p>O pagamento é feito no checkout, depois que você viu a prévia, por Pix ou cartão.</p>
-      </details>
-      <details>
-        <summary>Funciona com pet e família inteira?</summary>
-        <p>Funciona com criança, família, casal e pet no retrato da família. Quanto mais nítida a foto, melhor tende a ser o resultado, e a prévia mostra como ficou no seu caso.</p>
-      </details>
-    </div>
   </div>
 </section>
 
-<section class="priv" aria-labelledby="h-priv">
-  <div class="wrap" style="max-width:820px">
-    <div class="priv-box">
-      <p class="eyebrow">Privacidade e LGPD</p>
-      <h2 id="h-priv" style="font-size:clamp(1.5rem,5vw,2rem)">O que fazemos com a sua foto</h2>
-      <ul>
-        <li>A foto é usada <strong>somente para gerar o seu ensaio de Natal</strong>.</li>
-        <li>Ela é <strong>apagada em até 30 dias</strong>.</li>
-        <li>As imagens são criadas com a ajuda de inteligência artificial, e a sua foto só entra nesse processo.</li>
-        <li>Fotos de crianças devem ser enviadas pelo pai, pela mãe ou pelo responsável legal.</li>
-        <li>Para pedir a exclusão antes do prazo, fale com a gente pelo mesmo WhatsApp.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="final on-dark" aria-labelledby="h-final">
+<section aria-labelledby="h-como">
   <div class="wrap">
-    <h2 id="h-final">Veja como ficaria o seu Natal. De graça.</h2>
-    <p class="intro">Uma foto, uma prévia grátis e você decide depois. Sem compromisso.</p>
-    <div class="btn-row">
-      <a class="btn btn-main" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.">Quero ver a minha prévia grátis</a>
-      <a class="btn btn-sec" href="https://pay.cakto.com.br/tph9hjh_1360498">Já vi a prévia e quero as 10 fotos</a>
-    </div>
+    <div class="cab"><span class="pill">Como funciona</span><h2 id="h-como">Três passos, tudo no <em>WhatsApp</em></h2></div>
+    <ol class="passos">
+      <li><span>1</span><div><h3>Mande a foto</h3><p>Uma foto com o rosto bem iluminado. Se for de criança, quem envia precisa ser o responsável.</p></div></li>
+      <li><span>2</span><div><h3>Veja a prévia</h3><p>Ela chega pequena e com marca d'água. Não gostou? Não paga nada.</p></div></li>
+      <li><span>3</span><div><h3>Receba no mesmo dia</h3><p>Com o pagamento e a foto em mãos, as fotos do pacote chegam no seu WhatsApp.</p></div></li>
+    </ol>
   </div>
 </section>
+
+<section id="faq" aria-labelledby="h-faq" style="padding-top:0">
+  <div class="wrap" style="max-width:800px">
+    <div class="cab"><span class="pill">Dúvidas</span><h2 id="h-faq">Antes de mandar <em>a foto</em></h2></div>
+    <details><summary>Vai ficar parecido?</summary><p>Não dá para garantir que o rosto saia idêntico, porque as imagens são geradas por inteligência artificial. Por isso existe a prévia: você vê o resultado antes de pagar.</p></details>
+    <details><summary>Em quanto tempo recebo?</summary><p>A prévia em até 1 hora durante o dia. Depois do pagamento e com a foto recebida, o pacote chega no mesmo dia.</p></details>
+    <details><summary>E se eu não gostar?</summary><p>Quem compra direto recebe 1 foto primeiro e, se não gostar, tem o valor devolvido. Há ainda a garantia de 7 dias. É só pedir pelo mesmo WhatsApp.</p></details>
+    <details><summary>Como pago?</summary><p>No checkout, por Pix ou cartão. A taxa de serviço de R$ 0,99 é cobrada lá.</p></details>
+    <details><summary>Funciona com família e pet?</summary><p>Funciona com criança, família, casal e pet. Quanto mais nítida a foto, melhor tende a ficar.</p></details>
+    <div class="priv"><h3>O que fazemos com a sua foto</h3><ul>
+      <li>Ela é usada somente para gerar o seu ensaio, com ajuda de inteligência artificial.</li>
+      <li>É apagada em até 30 dias. Para apagar antes, peça pelo WhatsApp.</li>
+      <li>Foto de criança só enviada pelo pai, pela mãe ou pelo responsável legal.</li>
+      <li>Se você chegou por um anúncio, o checkout registra de qual anúncio veio.</li></ul></div>
+  </div>
+</section>
+
+<section class="fim"><div class="wrap"><h2>Veja o seu Natal <em>de graça</em></h2><a class="btn rubi" data-ev="previa" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.%0ACen%C3%A1rio%20que%20quero%3A%20">Ver minha prévia grátis <b>↗</b></a></div></section>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span class="marca">Natal em Foto</span>
-    <p><strong>Imagens criadas com inteligência artificial.</strong></p>
-    <p>Sua foto é usada só para gerar o ensaio e apagada em até 30 dias. Atendimento pelo WhatsApp.</p>
-  </div>
-</footer>
-
-<div class="barra" id="barra">
-  <a class="btn btn-main" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.">Quero ver a minha prévia grátis</a>
-</div>
+<footer><div class="wrap"><p class="marca">Natal em Foto</p><p>Imagens criadas com inteligência artificial. Atendimento pelo WhatsApp.</p></div></footer>
+<div class="barra" id="barra"><a class="btn rubi" data-ev="previa" href="https://wa.me/5555996665991?text=Oi!%20Quero%20ver%20a%20pr%C3%A9via%20gr%C3%A1tis%20do%20Natal%20em%20Foto.%0ACen%C3%A1rio%20que%20quero%3A%20">Ver minha prévia grátis <b>↗</b></a></div>
 
 <script>
 (function(){
+  var v=document.getElementById('vsl'),s=document.getElementById('som'),calmo=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!calmo){var p=v.play();if(p)p.catch(function(){})}
+  s.addEventListener('click',function(){v.muted=false;v.loop=false;v.currentTime=0;v.controls=true;v.play();s.hidden=true;if(window.fbq)fbq('trackCustom','VSL_som')});
+  var base='https://wa.me/5555996665991?text=',sel=[],desc=document.getElementById('desc'),env=document.getElementById('enviar');
+  function montar(){var t='Oi! Quero ver a prévia grátis do Natal em Foto.\nCenário que quero: '+(sel.join(', ')||'ainda vou escolher')+(desc.value.trim()?'\nComo quero: '+desc.value.trim():'')+'\n(vou anexar a foto)';env.href=base+encodeURIComponent(t)}
+  document.querySelectorAll('[data-cenario]').forEach(function(b){b.addEventListener('click',function(){var n=b.dataset.cenario,i=sel.indexOf(n);if(i<0){if(sel.length>=5)return;sel.push(n)}else sel.splice(i,1);b.setAttribute('aria-pressed',i<0);montar()})});
+  desc.addEventListener('input',montar);montar();
   var barra=document.getElementById('barra'),cta=document.getElementById('cta-topo');
-  if(!barra||!cta||!('IntersectionObserver' in window))return;
-  new IntersectionObserver(function(e){
-    barra.classList.toggle('on',!e[0].isIntersecting && e[0].boundingClientRect.top<0);
-  }).observe(cta);
+  new IntersectionObserver(function(e){barra.classList.toggle('on',!e[0].isIntersecting&&e[0].boundingClientRect.top<0)}).observe(cta);
+  if(location.search){document.querySelectorAll('a[href^="https://pay.cakto.com.br/"]').forEach(function(a){a.href=a.href.split('?')[0]+location.search})}
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-ev]');if(!a||!window.fbq)return;var ev=a.dataset.ev;
+    if(ev.indexOf('compra')===0)fbq('track','InitiateCheckout',{content_name:ev});else fbq('track','Contact',{content_name:ev})});
 })();
 </script>
 </body>
